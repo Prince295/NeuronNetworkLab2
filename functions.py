@@ -1,6 +1,6 @@
 import numpy as np
-def activate_function(x):
-    return 1/(1+np.exp(-x))
+def activate_function(x,b):
+    return 1/(1+np.exp(-x*b))
 
 
 def sum_func(h,w):

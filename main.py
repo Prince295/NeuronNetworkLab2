@@ -59,9 +59,9 @@ x[5] = [1,0,0,1,0,
         1,1,1,1,1,
         0,0,0,0,1]
 nu = 0.1
-b1 = 5.5
-b2 = 0.4
-b3 = 1
+b1 = 0.6
+b2 = 2
+b3 = 7
 # w1 = np.random.sample((4, 35))
 # w2 = np.random.sample((9,4))
 # w3 = np.random.sample((6,9))
@@ -93,11 +93,11 @@ t = [[1,0,0,0,0,0],
 for m in range(epohi):
     for j in range(6):
         for i in range(len(h[0])):
-            h[0][i] = activate_function(sum_func(x[j],w1[i]) + b1)
+            h[0][i] = activate_function(sum_func(x[j],w1[i]), b1)
         for i in range(len(h[1])):
-            h[1][i] = activate_function(sum_func(h[0],w2[i]) + b2)
+            h[1][i] = activate_function(sum_func(h[0],w2[i]), b2)
         for i in range(len(h[2])):
-            h[2][i] = activate_function(sum_func(h[1],w3[i]) + b3)
+            h[2][i] = activate_function(sum_func(h[1],w3[i]), b3)
         sigma[2] = get_sigma3(h,b3,t[j])
         sigma[1] = get_sigma2(h,b2,t[j],w3,sigma)
         sigma[0] = get_sigma1(h,b1,t[j],w2,sigma)
@@ -122,10 +122,10 @@ plt.show()
 print(h[2])
 
 for i in range( len( h[0] ) ):
-    h[0][i] = activate_function( sum_func( x[0], w1[i] ) + b1 )
+    h[0][i] = activate_function( sum_func( x[3], w1[i] ), b1 )
 for i in range( len( h[1] ) ):
-    h[1][i] = activate_function( sum_func( h[0], w2[i] ) + b2 )
+    h[1][i] = activate_function( sum_func( h[0], w2[i] ), b2 )
 for i in range( len( h[2] ) ):
-    h[2][i] = activate_function( sum_func( h[1], w3[i] ) + b3 )
+    h[2][i] = activate_function( sum_func( h[1], w3[i] ), b3 )
 
 print(h[2])
