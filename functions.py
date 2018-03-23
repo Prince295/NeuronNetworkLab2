@@ -17,7 +17,7 @@ def get_sigma3(h,b3,t):
 
 def get_sigma2(h,b2,t,w3,prev_sigma):
     sigma=[]
-    sum = [0,0,0,0,0,0,0,0,0]
+    sum = np.zeros(len(w3[0]))
     for i in range(len(w3)):
         for j in range(len(w3[i])):
             sum[j] += prev_sigma[2][i]*w3[i][j]
@@ -29,7 +29,7 @@ def get_sigma2(h,b2,t,w3,prev_sigma):
 
 def get_sigma1(h, b1, t, w2, prev_sigma):
     sigma = []
-    sum = [0, 0, 0, 0]
+    sum = np.zeros(len(w2[0]))
     for i in range( len( w2 ) ):
         for j in range( len( w2[i] ) ):
             sum[j] = sum[j] + prev_sigma[1][i] * w2[i][j]
@@ -44,3 +44,20 @@ def change_weight(w,nu,x,sigma):
         for j in range(len(w[i])):
             w[i][j] = w[i][j] - nu * sigma[i] * x[j]
     return w
+
+
+def get_mistake(x):
+    y =[]
+    for i in range(len(x)):
+        if i % 5 == 0:
+            if x[i] == 0:
+                y.append(1)
+            else:
+                y.append(0)
+        else:
+            if x[i] == 1:
+                y.append(1)
+            else:
+                y.append(0)
+    return y
+
