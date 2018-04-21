@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 image=[]
-image.append(Image.open( "Screenshot_5.jpg" ))
-image.append(Image.open( "Screenshot_6.jpg" ))
-image.append(Image.open( "Screenshot_7.jpg" ))
-image.append(Image.open( "Screenshot_8.jpg" ))
+image.append(Image.open( "Screenshot_9.jpg" ))
+image.append(Image.open( "Screenshot_10.jpg" ))
+image.append(Image.open( "Screenshot_11.jpg" ))
+image.append(Image.open( "Screenshot_12.jpg" ))
 x=[[],[],[],[]]
 for m in range(4):
     width = image[m].size[0]  # Определяем ширину.
@@ -116,17 +116,18 @@ plt.grid(True)
 plt.legend()
 plt.show()
 
-for i in range( len( h[0] ) ):
-    h[0][i] = activate_function( sum_func( x[1], w1[i] ), b1 )
-    output_error[0][i] = activate_function( sum_func( x_mistakes[1], w1[i] ), b1 )
-for i in range( len( h[1] ) ):
-    h[1][i] = activate_function( sum_func( h[0], w2[i] ), b2 )
-    output_error[1][i] = activate_function(sum_func(output_error[0],w2[i]), b2)
-for i in range( len( h[2] ) ):
-    h[2][i] = round(activate_function( sum_func( h[1], w3[i] ), b3 ),3)
-    output_error[2][i] = round(activate_function(sum_func(output_error[1],w3[i]), b3 ),3)
+for m in range(4):
+    for i in range( len( h[0] ) ):
+        h[0][i] = activate_function( sum_func( x[m], w1[i] ), b1 )
+        output_error[0][i] = activate_function( sum_func( x_mistakes[1], w1[i] ), b1 )
+    for i in range( len( h[1] ) ):
+        h[1][i] = activate_function( sum_func( h[0], w2[i] ), b2 )
+        output_error[1][i] = activate_function(sum_func(output_error[0],w2[i]), b2)
+    for i in range( len( h[2] ) ):
+        h[2][i] = round(activate_function( sum_func( h[1], w3[i] ), b3 ),3)
+        output_error[2][i] = round(activate_function(sum_func(output_error[1],w3[i]), b3 ),3)
 
 
-print("{0:.3f} , {1:.3f} , {2:.3f} , {3:.3f} ".format(h[2][0], h[2][1], h[2][2], h[2][3] ))
-print("{0:.3f} , {1:.3f} , {2:.3f} , {3:.3f} ".format(output_error[2][0], output_error[2][1], output_error[2][2], output_error[2][3]))
+    print("{0:.3f} , {1:.3f} , {2:.3f} , {3:.3f} ".format(h[2][0], h[2][1], h[2][2], h[2][3] ))
+    # print("{0:.3f} , {1:.3f} , {2:.3f} , {3:.3f} ".format(output_error[2][0], output_error[2][1], output_error[2][2], output_error[2][3]))
 
