@@ -48,7 +48,7 @@ class OutLabel(interface.Label):
     def __init__(self,parent = None, **configs):
         interface.Label.__init__(self, parent, **configs)
         self.pack()
-        self.config(fg='black', bg = 'yellow', font = 'verdana 13', relief = 'solid', justify = 'center', width = 15, bd = 1)
+        self.config(fg='black', bg = 'white', font = 'verdana 8', relief = 'solid', justify = 'center', width = 25, bd = 1)
 
 class ThemedMessage(interface.Entry):
     def __init__(self, parent = None, **configs):

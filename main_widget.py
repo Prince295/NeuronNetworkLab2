@@ -15,6 +15,7 @@ class MainWidget():
         form1.pack(fill = 'y')
         self.form2 = MainFrame( self.mainform )
         self.form2.pack()
+        self.var3 = interface.StringVar()
         for i in range( 6 ):
             button.append( ThemedButton(form1) )
         button[0].config(text = "Добавить изображение",command = lambda : self.check_image())
@@ -35,14 +36,19 @@ class MainWidget():
         form1.pack( expand=True, fill="both" )
         form2 = Navs( self.form2, padx=0 )
         form2.pack( expand=True, fill="both" )
-        label = []
+
         entry = []
         black_button = []
 
         container1 = Container( form1 )
         container2 = Container( form2 )
         button1 = CommandButton( container1 )
-        button1.config( text='Проверить', command=lambda: show_results(self.add_image(black_button),t,w1,w2,w3) )
+        labe11 = OutLabel(container1,text = "Результат")
+        self.label2 = OutLabel(container1,text = self.var3.get(), bg = 'white')
+        button1.config( text='Проверить', command=lambda: self.show_results(self.add_image(black_button),t,w1,w2,w3) )
+        button1.pack(side = "top", padx = 20, pady = 20)
+        labe11.pack(side = "top", padx = 5)
+        self.label2.pack(side = "top", padx = 5)
 
         for i in range( 64 ):
             black_button.append( interface.Button( container2, width=3, height=1, bg='white', fg='black' ) )
@@ -54,8 +60,21 @@ class MainWidget():
                 black_button[m].grid( row=i, column=j )
                 m += 1
         container1.pack( side='bottom', fill='x', expand=True )
-        button1.pack( side='right', padx=0.5 )
         container2.pack( side='bottom', fill='x', expand=True )
+
+    def show_results(self,m, t, w1, w2, w3):
+        for i in range( len( h[0] ) ):
+            h[0][i] = activate_function( sum_func( m, w1[i] ), b1 )
+            output_error[0][i] = activate_function( sum_func( x_mistakes[0], w1[i] ), b1 )
+        for i in range( len( h[1] ) ):
+            h[1][i] = activate_function( sum_func( h[0], w2[i] ), b2 )
+            output_error[1][i] = activate_function( sum_func( output_error[0], w2[i] ), b2 )
+        for i in range( len( h[2] ) ):
+            h[2][i] = round( activate_function( sum_func( h[1], w3[i] ), b3 ), 3 )
+            output_error[2][i] = round( activate_function( sum_func( output_error[1], w3[i] ), b3 ), 3 )
+
+        self.var3.set("{0:.3f} , {1:.3f} , {2:.3f} , {3:.3f} ".format( h[2][0], h[2][1], h[2][2], h[2][3] ))
+        self.label2.config(text = self.var3.get())
 
     def check_image(self):
         self.clear_form()
@@ -71,9 +90,10 @@ class MainWidget():
         container2 = Container( form2 )
         button1 = CommandButton( container1 )
         button1.config( text='Добавить', command=lambda: self.find_image(black_button,var1.get()) )
+        button1.pack(side = "top", padx = 20)
         var1 = interface.StringVar()
         classes = ThemedMenu(container1, var1, "K", "L", "M", "N")
-        classes.pack()
+        classes.pack(side = "top", padx = 20)
         var1.set("K")
 
         for i in range( 64 ):
