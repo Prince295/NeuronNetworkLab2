@@ -3,7 +3,7 @@ from objects import *
 import numpy as np
 import matplotlib.pyplot as plt
 
-h = [[0,0,0,0],[[0] for i in range(40)],[0,0,0,0]]
+h = [[0,0,0,0],[[0] for i in range(60)],[0,0,0,0]]
 
 WIDTH = 800
 HEIGHT = 600
@@ -100,31 +100,31 @@ x_mistakes[1] = [0, 1, 0, 0, 0, 0, 1, 0,
 
 x = add_x(x)
 
-output_error = [[0,0,0,0],[[0] for i in range(40)],[0,0,0,0]]
+output_error = [[0,0,0,0],[[0] for i in range(60)],[0,0,0,0]]
 
 nu = 0.1
-b1 = 0.6
-b2 = 2
-b3 = 7
+b1 = 1.5
+b2 = 1.5
+b3 = 2
 # w1 = np.random.sample((4, 35))
 # w2 = np.random.sample((9,4))
 # w3 = np.random.sample((6,9))
 
 w1 = [[0] * 64 for i in range(4)]
-w2 = [[0] * 4 for i in range(40)]
-w3 = [[0] * 40 for i in range(4)]
+w2 = [[0] * 4 for i in range(60)]
+w3 = [[0] * 60 for i in range(4)]
 
 epohi = 200
 for i in range(4):
     for j in range(64):
         w1[i][j] = np.random.uniform(-0.5, 0.5)
 
-for i in range(40):
+for i in range(60):
     for j in range(4):
         w2[i][j] = np.random.uniform(-0.5, 0.5)
 
 for i in range(4):
-    for j in range(40):
+    for j in range(60):
         w3[i][j] = np.random.uniform(-0.5, 0.5)
 
 e = np.zeros(epohi)
